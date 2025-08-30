@@ -1,4 +1,4 @@
-package Polymorphism;
+package hw1.Polymorphism;
 
 public class CargoShip extends Ship {
     private int cargoCapacity; // in tonnage

@@ -1,4 +1,4 @@
-package Composition;
+package hw1.Composition;
 
 public class Driver {
     public static void main(String[] args) {

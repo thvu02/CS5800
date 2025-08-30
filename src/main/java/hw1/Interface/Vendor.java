@@ -1,4 +1,4 @@
-package Interface;
+package hw1.Interface;
 
 public class Vendor implements Payable {
     private String vendorName;

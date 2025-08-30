@@ -1,4 +1,4 @@
-package Polymorphism;
+package hw1.Polymorphism;
 
 public class Ship {
     private String shipName;

@@ -1,4 +1,4 @@
-package Inheritance;
+package hw1.Inheritance;
 
 public class Driver {
     public static void main(String[] args) {

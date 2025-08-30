@@ -1,4 +1,4 @@
-package Inheritance;
+package hw1.Inheritance;
 
 public class CommissionEmployee extends Employee {
     private double commissionRate;

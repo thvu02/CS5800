@@ -1,4 +1,4 @@
-package Interface;
+package hw1.Interface;
 import java.lang.Math;
 
 public class Freelancer implements Payable {

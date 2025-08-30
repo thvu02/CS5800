@@ -1,4 +1,4 @@
-package Interface;
+package hw1.Interface;
 
 public interface Payable {
     double calculatePayment(); // returns the amount to be paid this period

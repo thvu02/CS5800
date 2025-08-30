@@ -1,4 +1,4 @@
-package Aggregation;
+package hw1.Aggregation;
 
 public class Textbook {
     private String title;

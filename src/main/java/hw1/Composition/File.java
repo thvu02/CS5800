@@ -1,4 +1,4 @@
-package Composition;
+package hw1.Composition;
 
 public class File {
     private String fileName;

@@ -1,31 +1,31 @@
-package Aggregation;
+package hw1.Inheritance;
 
-public class Instructor {
+public class Employee {
     private String firstName;
     private String lastName;
-    private String officeNumber;
+    private String ssn;
 
     // constructor
-    public Instructor(String firstName, String lastName, String officeNumber) {
+    public Employee(String firstName, String lastName, String ssn) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.officeNumber = officeNumber;
+        this.ssn = ssn;
     }
 
     // empty constructor
-    public Instructor() {
+    public Employee() {
         this.firstName = "";
         this.lastName = "";
-        this.officeNumber = "";
+        this.ssn = "";
     }
 
     // getters
     public String getFirstName() { return firstName; }
     public String getLastName() { return lastName; }
-    public String getOfficeNumber() { return officeNumber; }
+    public String getSsn() { return ssn; }
 
     // setters
     public void setFirstName(String firstName) { this.firstName = firstName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
-    public void setOfficeNumber(String officeNumber) { this.officeNumber = officeNumber; }
+    public void setSsn(String ssn) { this.ssn = ssn; }
 }

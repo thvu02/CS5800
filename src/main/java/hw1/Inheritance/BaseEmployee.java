@@ -1,4 +1,4 @@
-package Inheritance;
+package hw1.Inheritance;
 
 public class BaseEmployee extends Employee {
     private int baseSalary;
