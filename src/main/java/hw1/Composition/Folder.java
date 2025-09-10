@@ -20,13 +20,6 @@ public class Folder {
         this.subfolders = new ArrayList<Folder>();
     }
 
-    // full constructor
-    public Folder(String folderName, ArrayList<File> files, ArrayList<Folder> subfolders) {
-        this.folderName = folderName;
-        this.files = files;
-        this.subfolders = subfolders;
-    }
-
     // getters
     public String getFolderName() { return folderName; }
     public ArrayList<File> getFiles() { return files; }
