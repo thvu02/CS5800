@@ -1,0 +1,27 @@
+@startuml
+
+object "titanic:Ship" as ship1{
+    shipName = "Titanic"
+    yearBuilt = "March31st,1909"
+}
+
+object "mvgemini:CruiseShip" as ship2 {
+    shipName = "MVGemini"
+    yearBuilt = "May30th,1991"
+    maxNumberPassengers = 100
+}
+
+object "evergiven:Ship" as ship3 {
+    shipName = "EverGiven"
+    yearBuilt = "September25th,2018"
+    cargoCapacityInTonnage = 220940
+}
+
+object "ships:Ship[3]" as shipsArray {
+}
+
+shipsArray o-- ship1 : index 0
+shipsArray o-- ship2 : index 1
+shipsArray o-- ship3 : index 2
+
+@enduml

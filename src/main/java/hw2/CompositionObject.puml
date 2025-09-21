@@ -1,0 +1,69 @@
+@startuml
+
+object "phpDemo1:Folder" as pd1 {
+    name = "php_demo1"
+}
+
+object "Source Files:Folder" as sourceFiles {
+    name = "Source Files"
+}
+
+object "Include Path:Folder" as includePath {
+    name = "Include Path"
+}
+
+object "Remote Files:Folder" as remoteFiles {
+    name = "Remote Files"
+}
+
+'  Folder = "Source Files"
+
+object ".phalcon:Folder" as sf_phalcon {
+    name = ".phalcon"
+}
+
+object "app:Folder" as sf_app {
+    name = "app"
+}
+
+object "cache:Folder" as sf_cache {
+    name = "cache"
+}
+
+object "public:Folder" as sf_public {
+    name = "public"
+}
+
+' Folder = "app"
+' DELETED SO NOTHING HERE
+
+' Folder = "public"
+
+object ".htaccess:File" as pub_htaccess {
+    name = ".htaccess"
+}
+
+object ".htrouter.php:File" as pub_htrouter {
+    name = ".htrouter.php"
+}
+
+object "index.html:File" as pub_index {
+    name = "index.html"
+}
+
+' Draw associations
+
+pd1 *-- sourceFiles
+pd1 *-- includePath
+pd1 *-- remoteFiles
+
+sourceFiles *-- sf_phalcon
+sourceFiles *-- sf_app
+sourceFiles *-- sf_cache
+sourceFiles *-- sf_public
+
+sf_public *-- pub_htaccess
+sf_public *-- pub_htrouter
+sf_public *-- pub_index
+
+@enduml
