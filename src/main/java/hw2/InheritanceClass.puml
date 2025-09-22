@@ -1,6 +1,6 @@
 @startuml
 
-class Employee {
+abstract class Employee {
     - firstName : String
     - lastName : String
     - socialSecurityNumber : String
