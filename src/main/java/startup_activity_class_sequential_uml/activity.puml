@@ -1,0 +1,58 @@
+@startuml
+
+start
+if (User logged in?) then (yes)
+    :Profile.verifyLogin(email, password);
+    if (Login success?) then (yes)
+        :Profile.getSavedPartyMembers();
+        :Dashboard.generateDashboard();
+    else (no)
+        stop
+    endif
+else (no)
+    :Continue as guest;
+endif
+
+:Customer uploads receipt image;
+:Billing.storeImage(image);
+
+fork
+    :Billing.callOcrService_parseImage(image);
+    :OCR returns receipt data;
+end fork
+
+:Billing.createReceipt(receiptData);
+:Billing.displayReceiptData();
+
+if (Customer edits receipt?) then (yes)
+    :Receipt.updateData(updatedData);
+else (no)
+    :Use OCR data;
+endif
+
+:Customer assigns party members;
+:Billing.assignItemToMember(item, partyMember);
+
+if (User logged in and save requested?) then (yes)
+    :Profile.savePartyMember(partyMember);
+endif
+
+:Customer chooses tax / tip rule;
+:Billing.setTaxTipRule(rule);
+:Billing.calculcateSubtotals(receipt);
+:Billing.displayBreakdown();
+
+if (Party members without Venmo?) then (yes)
+    :Exclude those from payment requests;
+endif
+
+:Billing.sendVenmoRequests(members, amounts);
+
+if (Success) then (yes)
+    :Billing.storeTransaction(receipt);
+else (no)
+    :Display error;
+endif
+
+stop
+@enduml

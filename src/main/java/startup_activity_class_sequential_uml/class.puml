@@ -1,0 +1,107 @@
+@startuml
+
+skinparam linetype polyline
+
+class Profile {
+    - email : String
+    - password : String
+    - verified : Boolean
+    - partyMembers : List<PartyMember>
+    - transactionHistory : List<Receipt>
+    + verifyLogin(email : String, password : String) : Boolean
+    + getSavedPartyMembers() : List<PartyMember>
+    + savePartyMember(partyMember : PartyMember) : Boolean
+    + getTransactionHistory() : List<Receipt>
+    + createProfile(email : String, password : String) : Boolean
+    + modifyProfile(email : String, password : String) : Boolean
+    + renderDashboard() : Dashboard
+}
+
+class Dashboard {
+    - receipts : List<Receipt>
+    - owner : Profile
+    + generateDashboard(receipts : List<Receipt>) : String
+}
+
+class Billing {
+    - receipts : List<Receipt>
+    - partyMembers : List<PartyMember>
+    - taxTipRule : String
+    + storeImage(image : Image) : Boolean
+    + callOcrService_parseImage(image : Image) : Receipt
+    + createReceipt(receiptData : Receipt) : Receipt
+    + displayReceiptData() : Void
+    + assignItemToMember(item : Item, partyMember : PartyMember) : Boolean
+    + setTaxTipRule(rule : String) : Boolean
+    + calculateSubtotals(receipt : Receipt) : Map<PartyMember, Float>
+    + displayBreakdown() : Void
+    + sendVenmoRequests(members : List<PartyMember>, amounts : Map<PartyMember, Float>) : Boolean
+    + storeTransaction(receipt : Receipt) : Boolean
+}
+
+class Receipt {
+    - vendor : String
+    - date : Date
+    - items : List<Item>
+    - tax : Float
+    - tip : Float
+    + addVendor(vendor : String) : Void
+    + addDate(date : Date) : Void
+    + addLineItem(item : Item) : Void
+    + manuallyEnterData(vendor : String, date : Date, items : List<Item>, tax : Float, tip : Float) : Void
+    + updateData(vendor : String, date : Date, items : List<Item>, tax : Float, tip : Float) : Boolean
+}
+
+class Item {
+    - name : String
+    - price : Float
+    - assigned : Boolean
+    + setName(name : String) : Void
+    + setPrice(price : Float) : Void
+    + markAssigned() : Void
+}
+
+class PartyMember {
+    - name : String
+    - venmoHandle : String
+    - email : String
+    - phoneNumber : String
+    + setName(name : String) : Void
+    + setVenmoHandle(handle : String) : Void
+    + setEmail(email : String) : Void
+    + setPhoneNumber(phone : String) : Void
+}
+
+class OcrService {
+    + parseImage(image : Image) : Receipt
+}
+
+class PaypalAPI {
+    + createVenmoRequest(partyMember : PartyMember, amount : Float, message : String) : Boolean
+}
+
+class SmtpServer {
+    + sendVerificationEmail(email : String) : Boolean
+}
+
+class Database {
+    + saveProfile(profile : Profile) : Boolean
+    + getProfile(email : String) : Profile
+    + saveTransaction(receipt : Receipt) : Boolean
+    + getTransactions(profile : Profile) : List<Receipt>
+}
+
+Dashboard o-- Receipt
+Dashboard --> Profile
+Receipt *-- Item
+Billing --> Receipt
+Billing --> PartyMember
+Billing ..> OcrService
+Billing ..> Database
+Billing ..> PaypalAPI
+Profile o-- PartyMember
+Profile ..> SmtpServer
+Profile ..> Dashboard
+Profile ..> Database
+
+@enduml

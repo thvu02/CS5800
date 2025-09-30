@@ -1,0 +1,47 @@
+@startuml
+
+actor Customer
+participant Profile
+participant Dashboard
+participant Billing
+participant OcrService
+participant Receipt
+participant Database
+participant PaypalAPI
+
+Customer -> Profile : verifyLogin(email, password)
+Profile -> Database : getProfile(email)
+Profile --> Profile : verifyLogin()
+Profile --> Customer : login success / failure
+
+alt login success
+    Profile -> Profile : getSavedPartyMembers()
+    Profile -> Dashboard : generateDashboard()
+    Dashboard --> Customer : displayDashboard()
+else login failure
+    Customer -> stop
+end
+
+Customer -> Billing : storeImage(image)
+Billing -> OcrService : callOcrService_parseImage(image)
+OcrService --> Billing : receiptData
+Billing -> Receipt : createReceipt(receiptData)
+Billing -> Customer : displayReceiptData()
+
+Customer -> Receipt : updateData(updatedData)
+Receipt --> Billing : update success
+
+Customer -> Billing : assignItemToMember(item, partyMember)
+
+alt Save party member info
+    Billing -> Profile : savePartyMember(partyMember)
+end
+
+Customer -> Billing : setTaxTipRule(rule)
+Billing -> Billing : calculateSubtotals(receipt)
+Billing -> PaypalAPI : sendVenmoRequests(members, amounts)
+PaypalAPI --> Billing : successStatus
+Billing -> Database : saveTransaction(receipt)
+Billing -> Customer : displaySuccess()
+
+@enduml
