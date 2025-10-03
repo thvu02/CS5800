@@ -5,6 +5,19 @@ import java.util.ArrayList;
 
 public class Driver {
     public static void main(String args[]) {
+        // Test 0: three pizzas one of each size 3, 6, and 9 toppings and eat() them
+        Pizza smallPizza3Top = new Pizza.PizzaBuilder().setChainName("Pizza Hut").setSize("Small").setPepperoni(true).setExtraCheese(true).setHamAndPineapple(true).createPizza();
+        smallPizza3Top.eat();
+
+        Pizza medPizza6Top = new Pizza.PizzaBuilder().setChainName("Pizza Hut").setSize("Medium").setPepperoni(true).setExtraCheese(true).setHamAndPineapple(true)
+                                                        .setSausage(true).setOnions(true).setBacon(true).createPizza();
+        medPizza6Top.eat();
+
+        Pizza largePizza9Top = new Pizza.PizzaBuilder().setChainName("Pizza Hut").setSize("Large").setPepperoni(true).setExtraCheese(true).setHamAndPineapple(true)
+                                                        .setSausage(true).setOnions(true).setBacon(true)
+                                                        .setOlives(true).setPesto(true).setHam(true).createPizza();
+        largePizza9Top.eat();
+
         // Test 1: Pizza Hut; Large pizza with 3 toppings
         Pizza pizza1 = new Pizza.PizzaBuilder().setChainName("Pizza Hut").setSize("Large").setPepperoni(true).setExtraCheese(true).setHamAndPineapple(true).createPizza();
         pizza1.eat();
