@@ -217,17 +217,9 @@ public class Pizza {
                 throw new IllegalStateException("Pizza size must be set to Small, Medium, or Large");
             }
 
-            int toppingCount = countToppings();
-
-            if (size == "Small" && toppingCount <= 3 || size == "Medium" && toppingCount <= 6 || size == "Large" && toppingCount <= 9) {
-                return new Pizza(chainName, size, pepperoni, sausage, mushrooms, bacon, onions,
-                                    extraCheese, peppers, chicken, olives, spinach, tomatoAndBasil,
-                                    beef, ham, pesto, spicyPork, hamAndPineapple);
-            }
-            else
-                throw new IllegalStateException("Too many toppings (" + toppingCount + ") " +
-                                                "for selected pizza size (" + size + ") " +
-                                                "at pizza chain (" + chainName + ")");
+            return new Pizza(chainName, size, pepperoni, sausage, mushrooms, bacon, onions,
+                                extraCheese, peppers, chicken, olives, spinach, tomatoAndBasil,
+                                beef, ham, pesto, spicyPork, hamAndPineapple);
         }
 
         private int countToppings() {
