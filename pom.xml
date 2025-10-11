@@ -14,13 +14,57 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <!-- COMMENT: FRAMEWORKS NOT ALLOWED IN HW UNTIL FURTHER NOTICE -->
-    <!--     <dependencies> -->
-    <!--         <dependency> -->
-    <!--             <groupId>org.projectlombok</groupId> -->
-    <!--             <artifactId>lombok</artifactId> -->
-    <!--             <version>1.18.38</version> -->
-    <!--         </dependency> -->
-    <!--     </dependencies> -->
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
+        <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.12</version>
+        </dependency>
+
+        <!-- COMMENT: FRAMEWORKS NOT ALLOWED IN HW UNTIL FURTHER NOTICE -->
+        <!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.projectlombok/lombok &ndash;&gt;-->
+        <!--    <dependency>-->
+        <!--        <groupId>org.projectlombok</groupId>-->
+        <!--        <artifactId>lombok</artifactId>-->
+        <!--        <version>1.18.42</version>-->
+        <!--    </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.12</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
 
 </project>
